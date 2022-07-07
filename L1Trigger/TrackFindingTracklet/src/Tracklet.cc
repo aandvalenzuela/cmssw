@@ -781,11 +781,11 @@ int Tracklet::disk() const {
       d2 = (middleFPGAStub_ && (middleFPGAStub_->layerdisk() >= N_LAYER)) ? middleFPGAStub_->l1tstub()->disk() : 999,
       d3 = (outerFPGAStub_ && (outerFPGAStub_->layerdisk() >= N_LAYER)) ? outerFPGAStub_->l1tstub()->disk() : 999,
       d = 999;
-  if (abs(d1) < min(abs(d2), abs(d3)))
+  if (static_cast<unsigned int>(abs(d1)) < min(static_cast<unsigned int>(abs(d2)), static_cast<unsigned int>(abs(d3))))
     d = d1;
-  if (abs(d2) < min(abs(d1), abs(d3)))
+  if (static_cast<unsigned int>(abs(d2)) < min(static_cast<unsigned int>(abs(d1)), static_cast<unsigned int>(abs(d3))))
     d = d2;
-  if (abs(d3) < min(abs(d1), abs(d2)))
+  if (static_cast<unsigned int>(abs(d3)) < min(static_cast<unsigned int>(abs(d1)), static_cast<unsigned int>(abs(d2))))
     d = d3;
   return (d < 999 ? d : 0);
 }
