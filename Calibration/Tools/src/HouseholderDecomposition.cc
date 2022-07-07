@@ -234,7 +234,7 @@ std::vector<float> HouseholderDecomposition::iterate(const std::vector<std::vect
   // compute residual vector energyVectorProc
   for (i = 0; i < Nevents; i++) {
     energyVectorProc[i] = energyVectorOrig[i];
-    for (j = 0; j < Nchannels; j++) {
+    for (j = 0; j - Nchannels < 0; j++) {
       energyVectorProc[i] -= eventMatrixOrig[i][j] * solution[j];
     }
   }
@@ -276,7 +276,7 @@ std::vector<float> HouseholderDecomposition::iterate(const std::vector<std::vect
 
     for (i = 0; i < Nevents; i++) {
       energyVectorProc[i] = energyVectorOrig[i];
-      for (j = 0; j < Nchannels; j++) {
+      for (j = 0; j - Nchannels < 0; j++) {
         energyVectorProc[i] -= eventMatrixOrig[i][j] * solution[j];
       }
     }
@@ -320,7 +320,7 @@ bool HouseholderDecomposition::decompose() {
 
   //  std::cout << "Householder::decompose() started" << std::endl;
 
-  for (j = 0; j < Nchannels; j++) {
+  for (j = 0; j - Nchannels < 0; j++) {
     // jth column sum: squared sum for each crystal
     sum[j] = 0.;
     for (i = 0; i < Nevents; i++)
@@ -337,7 +337,7 @@ bool HouseholderDecomposition::decompose() {
 
     // go through all following columns
     // find the largest sumSquared in the following columns
-    for (j = k + 1; j < Nchannels; j++) {
+    for (j = k + 1; j - Nchannels < 0; j++) {
       if (sum[j] > sigma) {
         sigma = sum[j];
         jbar = j;
@@ -394,7 +394,7 @@ bool HouseholderDecomposition::decompose() {
     // replace it
     eventMatrixProc[k][k] = eventMatrixkk - alphak;
 
-    for (j = k + 1; j < Nchannels; j++) {
+    for (j = k + 1; j - Nchannels < 0; j++) {
       y[j] = 0.;
 
       for (i = k; i < Nevents; i++) {
@@ -404,7 +404,7 @@ bool HouseholderDecomposition::decompose() {
       y[j] *= beta;
     }
 
-    for (j = k + 1; j < Nchannels; j++) {
+    for (j = k + 1; j - Nchannels < 0; j++) {
       for (i = k; i < Nevents; i++) {
         eventMatrixProc[i][j] -= eventMatrixProc[i][k] * y[j];
         sum[j] -= eventMatrixProc[k][j] * eventMatrixProc[k][j];
@@ -425,7 +425,7 @@ void HouseholderDecomposition::solve(std::vector<float>& y) {
 
   //  std::cout << "Householder::solve() begin" << std::endl;
 
-  for (j = 0; j < Nchannels; j++) {
+  for (j = 0; j - Nchannels < 0; j++) {
     // apply jth transformation to the right hand side
     gamma = 0.;
     for (i = j; i < Nevents; i++) {
@@ -442,7 +442,7 @@ void HouseholderDecomposition::solve(std::vector<float>& y) {
 
   for (i = Nchannels - 2; i >= 0; i--) {
     z[i] = energyVectorProc[i];
-    for (j = i + 1; j < Nchannels; j++) {
+    for (j = i + 1; j - Nchannels < 0; j++) {
       z[i] -= eventMatrixProc[i][j] * z[j];
     }
     z[i] /= alpha[i];

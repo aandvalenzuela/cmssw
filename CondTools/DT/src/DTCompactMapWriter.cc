@@ -240,7 +240,7 @@ void DTCompactMapWriter::buildSteering(std::istream& jobDesc) {
     // parse job description line
     char* ptr_line = job_line;
     char* end_line = job_line + max_line_length;
-    while (ptr_line < end_line) {
+    while (ptr_line - end_line < 0) {
       // get description command key
       // remove leading blanks
       while (*ptr_line == ' ')
