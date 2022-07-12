@@ -205,7 +205,7 @@ void CSCAFEBConnectAnalysis::analyze(const CSCWireDigiCollection& wirecltn) {
         }
         /// Fill pair crosstalk map
         if (pulsed_layer == 1 || pulsed_layer == 3 || pulsed_layer == 5)
-          if (current_layer == 2 || current_layer == 4 || current_layer == 6)
+          if (current_layer == (static_cast<long>(pulsed_layer) + 1))
             vvfIt->second[i][2] = vvfIt->second[i][2] + (*viIt).second[i];
         if (pulsed_layer == 2 || pulsed_layer == 4 || pulsed_layer == 6)
           if (current_layer == (pulsed_layer - 1))
