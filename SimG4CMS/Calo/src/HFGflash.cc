@@ -446,6 +446,7 @@ std::vector<HFGflash::Hit> HFGflash::gfParameterization(const G4Step* aStep, boo
 #ifdef EDM_ML_DEBUG
       nSpots_sd++;
 #endif
+
     }  // end of for spot iteration
 
   }  // end of while for longitudinal integration
