@@ -40,9 +40,6 @@ void testValueMap::dummy() {
   ++e;
   Assoc::const_iterator f = v.find(edm::Ref<CKey>());
   v.numberOfAssociations(edm::Ref<CKey>());
-  const double& x = v[edm::Ref<CKey>()];
-  double y = x;
-  ++y;
   ++f;
   edm::Ref<Assoc> r;
   v.erase(edm::Ref<CKey>());
