@@ -321,6 +321,7 @@ void CaloSimHitAnalysis::analyzeHits(std::vector<PCaloHit>& hits, int indx) {
 #ifdef EDM_ML_DEBUG
   int iHit = 0;
 #endif
+
   std::map<CaloHitID, std::pair<double, double> > hitMap;
   double etot[nCalo_], etotG[nCalo_];
   for (unsigned int k = 0; k < nCalo_; ++k) {
