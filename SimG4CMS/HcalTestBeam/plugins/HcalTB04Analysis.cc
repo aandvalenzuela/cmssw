@@ -662,7 +662,7 @@ void HcalTB04Analysis::fillBuffer(const EndOfEvent* evt) {
   }
   sort(hite.begin(), hite.end(), CaloHitIdMore());
 #ifdef EDM_ML_DEBUG
-  int nhit = 0;
+  nhit = 0;
 #endif
   for (k1 = hite.begin(); k1 != hite.end(); k1++) {
     int det = (**k1).det();
@@ -999,7 +999,7 @@ void HcalTB04Analysis::fillEvent(PHcalTB04Info& product) {
   }
   edm::LogVerbatim("HcalTBSim") << "HcalTB04Analysis:: Saves " << nhit << " hits from Crystals";
 #ifdef EDM_ML_DEBUG
-  int i = nhit;
+  i = nhit;
 #endif
   nhit = 0;
   for (itr = hcalHitCache.begin(); itr != hcalHitCache.end(); itr++) {
